@@ -1,3 +1,13 @@
+html, body {
+	height: 100%;
+}
+
+.outer-container {
+	margin-right: 0;
+	padding-right: 0;
+	overflow: hidden;
+}
+
 .select2, .select3, .select4, .select5 {
 	display: none;
 }
@@ -5,3 +15,37 @@
 #submitBtn {
 	display: none;
 }
+
+#php, #javascript, #c, #ruby, #java, #html {
+	display: none;
+}
+
+body {
+  background: url(../img/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.col {
+	background-color: white;
+	height: 100vh;
+}
+
+.content-area {
+	margin-top: 50%;
+}
+
+.content-area p {
+	font-weight: 700;
+	font-size: 1.3em;
+	text-align: center;
+}
+
+.output div {
+	text-align: center;
+}
+
+

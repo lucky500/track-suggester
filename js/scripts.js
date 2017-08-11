@@ -1,59 +1,47 @@
 $(document).ready(init);
-var answersTotal = [];
-var answers;
-var answers1;
-var answer;
+var values;
 
 function init(){
 	$('select').material_select();
-	$('#nextBtn').on('click', grabAnswer);
-	// $('#nextBtn').on('click', grabAnswer);
+	$('#nextBtn').on('click', pageNext);
+	$('#submitBtn').on('click', totalAnswer);
 }
 
-// function grabAnswer(){
-// 	var questions = ["1"];
-// 	answer1 = questions.forEach(function(q){
-// 		// answers = $(".select" +  q + " option:selected").val();
-// 		console.log('answer from for each method: ', answers);
-// 		var testanswer = answersTotal.push(answers1);
-// 		console.log('testanswer: ', testanswer);
-// 	});
-// 	console.log('foreach method: ', answer1);
-// 	console.log('answers: ', answers);
-// 	console.log(answersTotal);
-// }
 
-function grabAnswer(){
-	$('#nextBtn').on('click', function(){
-		answers = $("select option:selected");
-
-		var values = $.map(answers ,function(option) {
-    	return option.value;
-		});
-		console.log('values: ', values);
-
-		answersTotal.push(answers);
-		console.log(answersTotal);
-		$('.current').removeClass('current').hide().next().show().addClass('current');
-		if ($('.current').hasClass('last')){
-			$('#nextBtn').hide();
-			$('#submitBtn').show();
-		};
+function grabAndPushAnswer(e){
+	answers = $("select option:checked");
+	values = $.map(answers ,function(option) {
+  		return option.value;
 	});
-}
+	return values;
+	console.log('values: ', values);
+};
 
 
+function pageNext(){
+	grabAndPushAnswer();
+	$('.current').removeClass('current').hide().next().show().addClass('current');
+	if ($('.current').hasClass('last')){
+		$('#nextBtn').hide();
+		$('#submitBtn').show();
+	};
+};
 
+function totalAnswer(){
+	values = values.map(function(item) {
+    return parseInt(item, 10);
+	});
+	var grandTotal = values.reduce(function(a,b){
+	 	return a + b;
+	}, 0);
+	console.log(grandTotal);
+	if(grandTotal <= 4){
+		$("#html").css('display', 'block');
+	} else if (grandTotal > 5 && grandTotal >= 7){
+		$("#javascript").css('display', 'block');
+	} else {
+		$("#c").css('display', 'block');
+	}
+};
 
-// var options = $('#selectBox option');
-
-// var values = $.map(options ,function(option) {
-//     return option.value;
-// });
-
-
-// $('.btnSubmit').click(function(e){
-// 	e.preventDefault();
-// 	console.log('submitted:');
-// });
      
