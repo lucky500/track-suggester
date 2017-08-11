@@ -8,19 +8,19 @@ function init(){
 }
 
 
-function grabAndPushAnswer(e){
+function grabAndPushAnswer(){
 	answers = $("select option:checked");
 	values = $.map(answers ,function(option) {
   		return option.value;
 	});
 	return values;
-	console.log('values: ', values);
 };
 
 
 function pageNext(){
-	grabAndPushAnswer();
 	$('.current').removeClass('current').hide().next().show().addClass('current');
+	console.log('values: ', values);
+	console.log('function: ', grabAndPushAnswer());
 	if ($('.current').hasClass('last')){
 		$('#nextBtn').hide();
 		$('#submitBtn').show();
@@ -28,6 +28,7 @@ function pageNext(){
 };
 
 function totalAnswer(){
+	grabAndPushAnswer();
 	values = values.map(function(item) {
     return parseInt(item, 10);
 	});
@@ -37,8 +38,10 @@ function totalAnswer(){
 	console.log(grandTotal);
 	if(grandTotal <= 4){
 		$("#html").css('display', 'block');
-	} else if (grandTotal > 5 && grandTotal >= 7){
+	} else if (grandTotal > 5 && grandTotal <= 9){
 		$("#javascript").css('display', 'block');
+	} else if (grandTotal > 10 && grandTotal <= 15){
+		$("#php").css('display', 'block');
 	} else {
 		$("#c").css('display', 'block');
 	}
